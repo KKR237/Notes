@@ -1,13 +1,14 @@
-package com.keyur.notes
+package com.keyur.notes.Activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import com.google.firebase.Firebase
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.keyur.notes.Model.NotesModel
+import com.keyur.notes.R
 
 class AddNote : AppCompatActivity() {
 
@@ -47,7 +48,7 @@ class AddNote : AppCompatActivity() {
                     Toast.makeText(this,"Data save successfully.",Toast.LENGTH_LONG).show()
                     txtTitle.text = ""
                     txtNote.text = ""
-//                    finish()
+                    finish()
                 }.addOnFailureListener{err ->
                     Toast.makeText(this,"error ${err.message}",Toast.LENGTH_LONG).show()
                 }

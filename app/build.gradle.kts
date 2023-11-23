@@ -13,6 +13,7 @@ android {
         applicationId = "com.keyur.notes"
         minSdk = 24
         targetSdk = 34
+
         versionCode = 1
         versionName = "1.0"
 

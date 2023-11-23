@@ -1,10 +1,11 @@
-package com.keyur.notes
+package com.keyur.notes.Activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,20 +14,19 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.keyur.notes.Adapter.NoteAdapter
+import com.keyur.notes.Model.NotesModel
+import com.keyur.notes.R
 
-class MainActivity : AppCompatActivity() {
-
-    private lateinit var rcylView:RecyclerView
-    private lateinit var btnAdd:Button
-    private lateinit var tvLoading:TextView
+class HomeSC : AppCompatActivity() {
+    private lateinit var rcylView: RecyclerView
+    private lateinit var btnAdd: ImageButton
     private lateinit var noteList:ArrayList<NotesModel>
     private lateinit var dbRef: DatabaseReference
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_home_sc)
 
-        tvLoading = findViewById(R.id.txtLoading)
         rcylView = findViewById(R.id.recyclerView)
         rcylView.layoutManager = LinearLayoutManager(this)
         rcylView.setHasFixedSize(true)
@@ -34,19 +34,16 @@ class MainActivity : AppCompatActivity() {
         noteList = arrayListOf<NotesModel>()
         getNoteData()
 
-        btnAdd = findViewById<Button>(R.id.btnAdd)
-        btnAdd.setOnClickListener(){
+        btnAdd = findViewById(R.id.btnAdd)
+        btnAdd.setOnClickListener{
             var intent = Intent(this, AddNote::class.java)
             startActivity(intent)
         }
     }
 
     private fun getNoteData() {
-        rcylView.visibility = View.GONE
-        tvLoading.visibility = View.VISIBLE
-
         dbRef = FirebaseDatabase.getInstance().getReference("Notes")
-        dbRef.addValueEventListener(object : ValueEventListener{
+        dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 noteList.clear()
                 if (snapshot.exists()){

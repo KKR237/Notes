@@ -1,4 +1,4 @@
-package com.keyur.notes
+package com.keyur.notes.Model
 
 data class NotesModel(
     var noteId:String? = null,
