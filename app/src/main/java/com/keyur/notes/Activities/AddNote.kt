@@ -1,10 +1,11 @@
 package com.keyur.notes.Activities
 
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.keyur.notes.Model.NotesModel
@@ -24,10 +25,10 @@ class AddNote : AppCompatActivity() {
         txtTitle = findViewById(R.id.txTitle)
         txtNote = findViewById(R.id.txNote)
         btnSubmit = findViewById(R.id.btnSubmit)
+        val myColor: Int = Color.parseColor("#BB9BE4")
+        btnSubmit.setBackgroundColor(myColor)
 
         dbRef = FirebaseDatabase.getInstance().getReference("Notes")
-
-
 
         btnSubmit.setOnClickListener(){
             saveNotes()

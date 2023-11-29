@@ -1,6 +1,7 @@
 package com.keyur.notes.Activities
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -20,7 +22,7 @@ import com.keyur.notes.R
 
 class HomeSC : AppCompatActivity() {
     private lateinit var rcylView: RecyclerView
-    private lateinit var btnAdd: ImageButton
+    private lateinit var btnAdd: FloatingActionButton
     private lateinit var noteList:ArrayList<NotesModel>
     private lateinit var dbRef: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +37,8 @@ class HomeSC : AppCompatActivity() {
         getNoteData()
 
         btnAdd = findViewById(R.id.btnAdd)
+        val myColor: Int = Color.parseColor("#BB9BE4")
+        btnAdd.setBackgroundColor(myColor)
         btnAdd.setOnClickListener{
             var intent = Intent(this, AddNote::class.java)
             startActivity(intent)
@@ -53,6 +57,19 @@ class HomeSC : AppCompatActivity() {
                     }
                     val nAdapter = NoteAdapter(noteList)
                     rcylView.adapter = nAdapter
+
+                    nAdapter.setOnItemClickListener(object :NoteAdapter.onItemClickListener{
+                        override fun onItemClick(position: Int) {
+                            var intent = Intent(this@HomeSC, ViewNote::class.java)
+
+                            //put extras
+                            intent.putExtra("noteId",noteList[position].noteId)
+                            intent.putExtra("title",noteList[position].title)
+                            intent.putExtra("note",noteList[position].note)
+                            startActivity(intent)
+                        }
+
+                    })
                 }
             }
 
