@@ -14,6 +14,7 @@ import com.keyur.notes.R
 class ViewNote : AppCompatActivity() {
     private lateinit var txtTitle: TextView
     private lateinit var txtNote: TextView
+    private lateinit var txtBy: TextView
     private lateinit var btnDlt: ImageButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +26,19 @@ class ViewNote : AppCompatActivity() {
         btnDlt.setOnClickListener{
             showAlert()
         }
+    }
+
+    private fun initView() {
+        txtTitle = findViewById(R.id.title)
+        txtNote = findViewById(R.id.note)
+        txtBy = findViewById(R.id.by)
+        btnDlt = findViewById(R.id.btnDlt)
+    }
+
+    private fun setValuesToViews() {
+        txtTitle.text = intent.getStringExtra("title")
+        txtNote.text = intent.getStringExtra("note")
+        txtBy.text = "By : ${intent.getStringExtra("by")}"
     }
 
     private fun showAlert(){
@@ -54,16 +68,5 @@ class ViewNote : AppCompatActivity() {
             err ->
             Toast.makeText(this,"Error deleting note ${err.toString()}", Toast.LENGTH_LONG).show()
         }
-    }
-
-    private fun initView() {
-        txtTitle = findViewById(R.id.title)
-        txtNote = findViewById(R.id.note)
-        btnDlt = findViewById(R.id.btnDlt)
-    }
-
-    private fun setValuesToViews() {
-        txtTitle.text = intent.getStringExtra("title")
-        txtNote.text = intent.getStringExtra("note")
     }
 }

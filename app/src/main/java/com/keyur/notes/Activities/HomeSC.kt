@@ -37,8 +37,6 @@ class HomeSC : AppCompatActivity() {
         getNoteData()
 
         btnAdd = findViewById(R.id.btnAdd)
-        val myColor: Int = Color.parseColor("#BB9BE4")
-        btnAdd.setBackgroundColor(myColor)
         btnAdd.setOnClickListener{
             var intent = Intent(this, AddNote::class.java)
             startActivity(intent)
@@ -66,6 +64,7 @@ class HomeSC : AppCompatActivity() {
                             intent.putExtra("noteId",noteList[position].noteId)
                             intent.putExtra("title",noteList[position].title)
                             intent.putExtra("note",noteList[position].note)
+                            intent.putExtra("by",noteList[position].by)
                             startActivity(intent)
                         }
 

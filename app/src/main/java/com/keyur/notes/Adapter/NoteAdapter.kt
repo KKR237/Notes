@@ -29,6 +29,7 @@ class NoteAdapter(private val notelist:ArrayList<NotesModel>):RecyclerView.Adapt
         val note = notelist[position]
         holder.tvTitle.text = note.title
         holder.tvNote.text = note.note
+        holder.tvby.text = "By : ${note.by}"
     }
 
     override fun getItemCount(): Int {
@@ -38,6 +39,7 @@ class NoteAdapter(private val notelist:ArrayList<NotesModel>):RecyclerView.Adapt
     class ViewHolder(itemView:View,clickListener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
         val tvTitle:TextView = itemView.findViewById(R.id.txtTitle)
         val tvNote:TextView = itemView.findViewById(R.id.txtNote)
+        val tvby:TextView = itemView.findViewById(R.id.txtBy)
 
         init {
             itemView.setOnClickListener{

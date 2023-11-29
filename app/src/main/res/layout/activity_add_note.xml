@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginBottom="5dp"
+        android:fontFamily="casual"
         android:text="Add Note"
         android:textColor="#BB9BE4"
         android:textSize="30sp"
@@ -53,6 +54,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
+    <EditText
+        android:id="@+id/txBy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="Your Name"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txNote" />
+
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
@@ -62,7 +76,7 @@
         app:iconTint="#BB9BE4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txNote"
+        app:layout_constraintTop_toBottomOf="@+id/txBy"
         app:rippleColor="#BB9BE4"
         app:strokeColor="#BB9BE4" />
 

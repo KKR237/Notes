@@ -15,6 +15,7 @@ class AddNote : AppCompatActivity() {
 
     private lateinit var txtTitle:TextView
     private lateinit var txtNote:TextView
+    private lateinit var txtby:TextView
     private lateinit var btnSubmit:Button
     private lateinit var dbRef:DatabaseReference
 
@@ -24,6 +25,7 @@ class AddNote : AppCompatActivity() {
 
         txtTitle = findViewById(R.id.txTitle)
         txtNote = findViewById(R.id.txNote)
+        txtby = findViewById(R.id.txBy)
         btnSubmit = findViewById(R.id.btnSubmit)
         val myColor: Int = Color.parseColor("#BB9BE4")
         btnSubmit.setBackgroundColor(myColor)
@@ -38,10 +40,11 @@ class AddNote : AppCompatActivity() {
     private fun saveNotes(){
         val title = txtTitle.text.toString()
         val note = txtNote.text.toString()
+        val by = txtby.text.toString()
         val noteId = dbRef.push().key!!
-        var notes = NotesModel(noteId, title, note)
+        var notes = NotesModel(noteId, title, note,by)
 
-        if (title.isEmpty() || note.isEmpty()){
+        if (title.isEmpty() || note.isEmpty() || by.isEmpty()){
             Toast.makeText(this,"Please enter valid data",Toast.LENGTH_LONG).show()
         } else {
             dbRef.child(noteId).setValue(notes)
@@ -49,6 +52,7 @@ class AddNote : AppCompatActivity() {
                     Toast.makeText(this,"Data save successfully.",Toast.LENGTH_LONG).show()
                     txtTitle.text = ""
                     txtNote.text = ""
+                    txtby.text = ""
                     finish()
                 }.addOnFailureListener{err ->
                     Toast.makeText(this,"error ${err.message}",Toast.LENGTH_LONG).show()
