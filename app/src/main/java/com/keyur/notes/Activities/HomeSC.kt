@@ -1,15 +1,11 @@
 package com.keyur.notes.Activities
 
 import android.content.Intent
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -19,6 +15,7 @@ import com.google.firebase.database.ValueEventListener
 import com.keyur.notes.Adapter.NoteAdapter
 import com.keyur.notes.Model.NotesModel
 import com.keyur.notes.R
+
 
 class HomeSC : AppCompatActivity() {
     private lateinit var rcylView: RecyclerView
@@ -30,7 +27,17 @@ class HomeSC : AppCompatActivity() {
         setContentView(R.layout.activity_home_sc)
 
         rcylView = findViewById(R.id.recyclerView)
-        rcylView.layoutManager = LinearLayoutManager(this)
+//        rcylView.layoutManager = LinearLayoutManager(this)
+
+//        rcylView.apply {
+//            layoutManager = GridLayoutManager(this@HomeSC, 2)
+//        }
+
+        // set a StaggeredGridLayoutManager with 3 number of columns and horizontal orientation
+        // set a StaggeredGridLayoutManager with 3 number of columns and horizontal orientation
+        val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+        rcylView.setLayoutManager(staggeredGridLayoutManager)
+
         rcylView.setHasFixedSize(true)
 
         noteList = arrayListOf<NotesModel>()
