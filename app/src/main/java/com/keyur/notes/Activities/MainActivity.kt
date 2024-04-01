@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, HomeSC::class.java)
+            val intent = Intent(this, Registration::class.java)
             startActivity(intent)
             finish()
         }, 3000)
